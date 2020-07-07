@@ -1,4 +1,4 @@
-# TravelAgency
+# User Database
 
 ## Table of contents
 * [General info](#general-info)
