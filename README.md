@@ -6,18 +6,21 @@
 * [Setup](#setup)
 
 ## General info
-This project is simple Travel Agency created by Konrad Michalski and Adam Kurczynski
+This project is simple User database. Used to add, edit and delete users.
 	
 ## Technologies
 Project is created with:
-* Java with Maven
-* Spring MVC
+* Java, HTML, CSS, Javascript
+* Spring Boot
 * SQLite
 	
 ## Setup
 To run this project: 
 
 ```
-$ Open intelliJ IDEA / Eclipse 
+$ Open intelliJ IDEA / Eclipse
+$ Configured Tomcat
+$ Configured Artifact
+$ Change database path
 $ Build Project
 ```
