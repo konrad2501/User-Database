@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
+import com.example.projekt.ConnectionPool;
+
 
 @Controller
 // Klasa zawiera obsługę logowania użytkownika

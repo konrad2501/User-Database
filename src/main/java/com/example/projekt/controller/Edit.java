@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import com.example.projekt.ConnectionPool;
+
 
 @Controller
 public class Edit

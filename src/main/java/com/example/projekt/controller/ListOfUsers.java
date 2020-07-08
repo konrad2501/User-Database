@@ -6,6 +6,8 @@ import com.example.projekt.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import com.example.projekt.ConnectionPool;
+
 
 import java.sql.SQLException;
 import java.util.List;

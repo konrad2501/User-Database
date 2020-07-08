@@ -14,6 +14,8 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import com.example.projekt.ConnectionPool;
+
 
 // Klasa zawiera wszystkie funkcjonalności, dotyczące bazy
 public class SQLiteDB {
