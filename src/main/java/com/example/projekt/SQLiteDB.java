@@ -20,7 +20,7 @@ import com.example.projekt.ConnectionPool;
 // Klasa zawiera wszystkie funkcjonalności, dotyczące bazy
 public class SQLiteDB {
     // Metoda przyjmuje obiekt klasy User i wykonuje zapytanie do bazy w celu stworzenia nowego użytkownika
-    public void AddNewUser(User user) throws SQLException{
+    public void AddNewUser(User user){
         ConnectionPool connection = new ConnectionPool();
         try (Connection conn = connection.getConnection()) {
             PreparedStatement statement = conn.prepareStatement("INSERT INTO users (name, surname, nick, pakiet, date)" +
