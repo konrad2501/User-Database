@@ -23,7 +23,7 @@ public class SQLiteDB {
     public void AddNewUser(User user){
         ConnectionPool connection = new ConnectionPool();
         try (Connection conn = connection.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO users (name, surname, nick, pakiet, date)" +
+            PreparedStatement statement = (PreparedStatement)conn.prepareStatement("INSERT INTO users (name, surname, nick, pakiet, date)" +
                     "VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
@@ -43,7 +43,7 @@ public class SQLiteDB {
     {
         ConnectionPool connection = new ConnectionPool();
         try (Connection conn = connection.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement("UPDATE users SET name = ?, surname = ?, nick = ?, pakiet = ?, date = ? WHERE id_user = ?");
+            PreparedStatement statement = (PreparedStatement)conn.prepareStatement("UPDATE users SET name = ?, surname = ?, nick = ?, pakiet = ?, date = ? WHERE id_user = ?");
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setString(3, user.getNick());
@@ -63,7 +63,7 @@ public class SQLiteDB {
     {
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConnection();
-        PreparedStatement statement = conn.prepareStatement("DELETE FROM users WHERE nick = ?");
+        PreparedStatement statement =(PreparedStatement)conn.prepareStatement("DELETE FROM users WHERE nick = ?");
         statement.setString(1, user.getNick());
         statement.executeUpdate();
         connection.closeConnection();
@@ -91,7 +91,7 @@ public class SQLiteDB {
     public int CheckLogin (Admin admin) throws SQLException {
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConnection();
-        PreparedStatement statement = conn.prepareStatement("SELECT id_admin, password FROM admin WHERE nick = ?");
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT id_admin, password FROM admin WHERE nick = ?");
         statement.setString(1, admin.getNick());
         ResultSet rs = statement.executeQuery();
         String password = null;
@@ -111,7 +111,7 @@ public class SQLiteDB {
         List<User> users = new ArrayList<>();
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConnection();
-        PreparedStatement statement = conn.prepareStatement("SELECT id_user, name, surname, nick, pakiet, date FROM users");
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT id_user, name, surname, nick, pakiet, date FROM users");
         ResultSet rs = statement.executeQuery();
 
         while(rs.next())
@@ -135,7 +135,7 @@ public class SQLiteDB {
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConnection();
         String nick = user.getNick();
-        PreparedStatement statement = conn.prepareStatement("DELETE FROM users WHERE nick = ?)\n");
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("DELETE FROM users WHERE nick = ?)\n");
         statement.setString(1, nick);
         statement.executeUpdate();
         connection.closeConnection();

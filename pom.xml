@@ -84,8 +84,13 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.14</version>
+		</dependency>
 
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -120,5 +125,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	
 </project>
