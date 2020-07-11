@@ -28,7 +28,7 @@ public class ConnectionPool {
                 + "/d15rkr8aga0lvv";  //"/d15rkr8aga0lvv?sslmode=require";
 
         try {
-            return DriverManager.getConnection(dbUrl, username, password);
+            conn = DriverManager.getConnection(dbUrl, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
