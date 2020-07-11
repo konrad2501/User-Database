@@ -2,10 +2,7 @@ package com.example.projekt;
 
 import com.example.projekt.model.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import com.example.projekt.ConnectionPool;
+import org.postgresql.util.PSQLException;
 
 
 // Klasa zawiera wszystkie funkcjonalności, dotyczące bazy
@@ -22,7 +20,7 @@ public class SQLiteDB {
     // Metoda przyjmuje obiekt klasy User i wykonuje zapytanie do bazy w celu stworzenia nowego użytkownika
     public void AddNewUser(User user){
         ConnectionPool connection = new ConnectionPool();
-        try (Connection conn = connection.getConnection()) {
+        try (Connection conn = connection.getConn()) {
             PreparedStatement statement = (PreparedStatement)conn.prepareStatement("INSERT INTO users (name, surname, nick, pakiet, date)" +
                     "VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, user.getName());
@@ -42,7 +40,7 @@ public class SQLiteDB {
     public void UpdateUser(User user)
     {
         ConnectionPool connection = new ConnectionPool();
-        try (Connection conn = connection.getConnection()) {
+        try (Connection conn = connection.getConn()) {
             PreparedStatement statement = (PreparedStatement)conn.prepareStatement("UPDATE users SET name = ?, surname = ?, nick = ?, pakiet = ?, date = ? WHERE id_user = ?");
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
@@ -62,7 +60,7 @@ public class SQLiteDB {
     public void DeleteUser(User user) throws SQLException
     {
         ConnectionPool connection = new ConnectionPool();
-        Connection conn = connection.getConnection();
+        Connection conn = connection.getConn();
         PreparedStatement statement =(PreparedStatement)conn.prepareStatement("DELETE FROM users WHERE nick = ?");
         statement.setString(1, user.getNick());
         statement.executeUpdate();
@@ -90,9 +88,9 @@ public class SQLiteDB {
     // Metoda przyjmuje obiekt klasy User i sprawdza czy podane dane przy logowaniu zgadzają się z tymi w bazie danych
     public int CheckLogin (Admin admin) throws SQLException {
         ConnectionPool connection = new ConnectionPool();
-        Connection conn = connection.getConnection();
-        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT id_admin, password FROM admin WHERE nick = ?");
-        statement.setString(1, admin.getNick());
+        Connection conn = connection.getConn();
+        PreparedStatement statement = conn.prepareStatement("SELECT * FROM admin WHERE nick = ?");
+        statement.setString(1,admin.getNick());
         ResultSet rs = statement.executeQuery();
         String password = null;
         int adminId = 0;
@@ -106,12 +104,38 @@ public class SQLiteDB {
         connection.closeConnection();
         return password.equals(admin.getPassword()) ? adminId : 0;
     }
+    public int sprawdz (Admin admin) throws SQLException {
+        ConnectionPool connection = new ConnectionPool();
+        Connection conn = connection.getConn();
+
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * FROM admin");
+//        while (resultSet.next()) {
+//            System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("nick"), resultSet.getString("password"));
+//        }
+
+        //PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM admin");
+        //statement.setString(1,admin.getNick());
+        //ResultSet rs = statement.executeQuery();
+        String password = null;
+        int adminId = 0;
+        while(rs.next())
+        {
+            adminId = rs.getInt("id_admin");
+            password = rs.getString("password");
+        }
+        if (adminId == 0 ) return 0;
+        rs.close();
+        connection.closeConnection();
+        //return password.equals(admin.getPassword()) ? adminId : 0;
+        return 1;
+    }
 
     public List<User> GetAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
         ConnectionPool connection = new ConnectionPool();
-        Connection conn = connection.getConnection();
-        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT id_user, name, surname, nick, pakiet, date FROM users");
+        Connection conn = connection.getConn();
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM users");
         ResultSet rs = statement.executeQuery();
 
         while(rs.next())
@@ -133,7 +157,7 @@ public class SQLiteDB {
     public void RemoveUser(User user) throws SQLException
     {
         ConnectionPool connection = new ConnectionPool();
-        Connection conn = connection.getConnection();
+        Connection conn = connection.getConn();
         String nick = user.getNick();
         PreparedStatement statement = (PreparedStatement)conn.prepareStatement("DELETE FROM users WHERE nick = ?)\n");
         statement.setString(1, nick);

@@ -10,28 +10,32 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConnectionPool {
-    Connection conn = null;
 
-    public Connection getConnection() {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e1) {
-            // TODO Auto-generated catch block
+    Connection conn = null;
+    public Connection getConn() {
+        try
+        {
+            //Class.forName("org.postgresql.Driver");
+            conn =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+            System.out.println("Connected");
+            //return conn;
+        } catch (SQLException e1) {
             e1.printStackTrace();
         }
-          String username = "gdqekcfkewuhhb";
-          String password = "029f2feb66405dad1edab866a835ed398b857a2954c89e895cec6bc8cd1e862d";
-          String dbUrl = "jdbc:postgresql://" + "ec2-54-75-244-161.eu-west-1.compute.amazonaws.com:5432"
-                + "/d15rkr8aga0lvv";  //"/d15rkr8aga0lvv?sslmode=require";
+//          String username = "gdqekcfkewuhhb";
+//          String password = "029f2feb66405dad1edab866a835ed398b857a2954c89e895cec6bc8cd1e862d";
+//          String dbUrl = "jdbc:postgresql://" + "ec2-54-75-244-161.eu-west-1.compute.amazonaws.com:5432"
+//                + "/d15rkr8aga0lvv";  //"/d15rkr8aga0lvv?sslmode=require";
 
-        try {
-            return DriverManager.getConnection(dbUrl, username, password);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        try {
+//            return DriverManager.getConnection(dbUrl, username, password);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return conn;
     }
+
+
 
     public void closeConnection(){
         try {
