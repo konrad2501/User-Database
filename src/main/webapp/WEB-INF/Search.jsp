@@ -57,9 +57,9 @@
 </body>
 </html>
 <script>
-    const bitcoin = "https://blockchain.info/unspent?active=18u39tgMm4o3jYLCw9pVC7cPQGsPUWpS5";
-    const ethereum = "https://api.blockchair.com/ethereum/dashboards/address/0xfa51F61d51e37971c7E5663812D83c1D9Fe9682b";
-    var iftrue;
+    const bitcoin = "https://api.blockcypher.com/v1/btc/main/addrs/18u39tgMm4o3jYLCw9pVC7cPQGsPUWpS5"; //"https://blockchain.info/unspent?active=18u39tgMm4o3jYLCw9pVC7cPQGsPUWpS5";
+    const ethereum = "https://api.blockcypher.com/v1/eth/main/addrs/0xfa51F61d51e37971c7E5663812D83c1D9Fe9682b"; //"https://api.blockchair.com/ethereum/dashboards/address/0xfa51F61d51e37971c7E5663812D83c1D9Fe9682b";
+
     async function searchB()
     {
         const response = await fetch(bitcoin);
@@ -68,7 +68,7 @@
         var found = (JSON.stringify(data));
         var hash = document.getElementById('txid').value;
         var bool = found.includes(hash);
-        if(bool == true && hash.length > 45)
+        if(bool == true && hash.length > 60)
         {
             document.getElementById("output1").innerHTML = "<span style='color: green;'> Znaleziono wpłatę BTC.</span>";
         }
@@ -86,7 +86,7 @@
         var found = (JSON.stringify(data));
         var hash = document.getElementById('txid').value;
         var bool = found.includes(hash);
-        if(bool == true && hash.length > 45)
+        if(bool == true && hash.length > 60)
         {
             document.getElementById("output2").innerHTML = "<span style='color: green;'> Znaleziono wpłatę ETH.</span>";
         }
