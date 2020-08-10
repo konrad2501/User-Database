@@ -85,6 +85,12 @@
                         <form:input path="date" type="text" style="padding: 7px 15px; font-size:12px;" id="newdata" value="${users.date}"/>
                         <input type="button" value="Przedłuż" name="${users.date}" onclick="funDate(this)"/>
                     </td>
+                    <td>
+                        Uwagi:
+                    </td>
+                    <td>
+                        <form:input path="comments" style="padding: 7px 15px; font-size:12px;" value="${users.comments}"/>
+                    </td>
 
                 </tr>
             </table>

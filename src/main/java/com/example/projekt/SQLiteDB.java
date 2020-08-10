@@ -41,13 +41,14 @@ public class SQLiteDB {
     {
         ConnectionPool connection = new ConnectionPool();
         try (Connection conn = connection.getConn()) {
-            PreparedStatement statement = (PreparedStatement)conn.prepareStatement("UPDATE users SET name = ?, surname = ?, nick = ?, pakiet = ?, date = ? WHERE id_user = ?");
+            PreparedStatement statement = (PreparedStatement)conn.prepareStatement("UPDATE users SET name = ?, surname = ?, nick = ?, pakiet = ?, date = ?, comments = ? WHERE id_user = ?");
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setString(3, user.getNick());
             statement.setString(4, user.getPakiet());
             statement.setString(5, user.getDate());
             statement.setInt(6, user.getId_user());
+            statement.setString(7, user.getComments());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -135,7 +136,7 @@ public class SQLiteDB {
         List<User> users = new ArrayList<>();
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConn();
-        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM users");
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM users GROUP BY id_user");
         ResultSet rs = statement.executeQuery();
 
         while(rs.next())
@@ -147,6 +148,7 @@ public class SQLiteDB {
             user.setNick(rs.getString("nick"));
             user.setPakiet(rs.getString("pakiet"));
             user.setDate(rs.getString("date"));
+            user.setComments(rs.getString("comments"));
             users.add(user);
         }
         rs.close();

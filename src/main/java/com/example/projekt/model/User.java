@@ -32,6 +32,16 @@ public class User {
 
     private String date;
 
+    private String comments;
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
     public String getNick() {
         return nick;
     }
