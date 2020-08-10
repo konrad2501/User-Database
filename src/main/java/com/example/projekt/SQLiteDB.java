@@ -136,7 +136,7 @@ public class SQLiteDB {
         List<User> users = new ArrayList<>();
         ConnectionPool connection = new ConnectionPool();
         Connection conn = connection.getConn();
-        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM users GROUP BY id_user");
+        PreparedStatement statement = (PreparedStatement)conn.prepareStatement("SELECT * FROM users");
         ResultSet rs = statement.executeQuery();
 
         while(rs.next())
