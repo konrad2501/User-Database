@@ -22,7 +22,7 @@ public class SQLiteDB {
         ConnectionPool connection = new ConnectionPool();
         try (Connection conn = connection.getConn()) {
             PreparedStatement statement = (PreparedStatement)conn.prepareStatement("INSERT INTO users (name, surname, nick, pakiet, date, comments)" +
-                    "VALUES (?, ?, ?, ?, ?)");
+                    "VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setString(3, user.getNick());
@@ -48,8 +48,9 @@ public class SQLiteDB {
             statement.setString(3, user.getNick());
             statement.setString(4, user.getPakiet());
             statement.setString(5, user.getDate());
-            statement.setInt(6, user.getId_user());
-            statement.setString(7, user.getComments());
+            statement.setString(6, user.getComments());
+            statement.setInt(7, user.getId_user());
+
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
