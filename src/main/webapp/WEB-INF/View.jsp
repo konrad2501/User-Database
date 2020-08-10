@@ -74,7 +74,7 @@
         <h2>Pakiet 1</h2>
 
         <tr>
-            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th>
+            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th> <th> Uwagi</th>
         </tr>
         <c:forEach var="users" items="${users}">
             <c:if test="${users.pakiet=='Opcja 1'}">
@@ -110,7 +110,7 @@
         <h2>Pakiet 2</h2>
 
         <tr>
-            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th>
+            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th> <th> Uwagi</th>
         </tr>
         <c:forEach var="users" items="${users}">
             <c:if test="${users.pakiet=='Opcja 2'}">
@@ -133,6 +133,9 @@
                     <td>
                             ${users.date}
                     </td>
+                    <td>
+                            ${users.comments}
+                    </td>
                 </tr>
             </c:if>
         </c:forEach>
@@ -142,7 +145,7 @@
     <table>
         <h2>Pakiet 3</h2>
         <tr>
-            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th>
+            <th> ID </th><th> Imię </th> <th> Nazwisko </th> <th> Nick </th> <th> Data ważności </th> <th> Uwagi</th>
         </tr>
         <c:forEach var="users" items="${users}">
             <c:if test="${users.pakiet=='Opcja 3'}">
@@ -165,15 +168,18 @@
                     <td>
                             ${users.date}
                     </td>
+                    <td>
+                            ${users.comments}
+                    </td>
                 </tr>
             </c:if>
         </c:forEach>
     </table>
     </div>
 </c:if>
-    <c:if test="${!logged}">
-        <c:redirect url="/Login"/>
-    </c:if>
+<%--    <c:if test="${!logged}">--%>
+<%--        <c:redirect url="/Login"/>--%>
+<%--    </c:if>--%>
 </div>
 </body>
 </html>

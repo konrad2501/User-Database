@@ -81,7 +81,7 @@
                             Data: ${users.date}
                 </td>
                 <td>
-                    Uwagi: ${users.comments}
+                        Uwagi: ${users.comments}
                 </td>
                 <td>
                     <a type="button" style="padding: 14px 25px; background-color: white; cursor: pointer; color: #f44336;" href="Edit/${users.id_user}">Edytuj</a>
@@ -92,9 +92,9 @@
     </div>
     </div>
         </c:if>
-        <c:if test="${!logged}">
-            <c:redirect url="/Login"/>
-        </c:if>
+<%--        <c:if test="${!logged}">--%>
+<%--            <c:redirect url="/Login"/>--%>
+<%--        </c:if>--%>
 </body>
 </html>
 <%--<script>--%>
