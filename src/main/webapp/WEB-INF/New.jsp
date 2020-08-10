@@ -62,6 +62,9 @@
         <label><b>Data(rrrr-mm-dd) </b> : </label><br>
         <form:input path="date" id="date"/>
         <br><br>
+        <label><b>Uwagi</b> : </label><br>
+        <form:input path="comments" id="comments"/>
+        <br><br>
         <input type="submit" value="Dodaj użytkownika" id="newUser"/>
 
 </div>

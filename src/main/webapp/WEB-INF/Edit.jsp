@@ -53,19 +53,19 @@
                         Imię:
                     </td>
                     <td>
-                        <form:input path="name" style="padding: 7px 15px; font-size:12px;" value="${users.name}"/>
+                        <form:input path="name" style="padding: 7px 12px; font-size:12px;" value="${users.name}"/>
                     </td>
                     <td>
                         Nazwisko:
                     </td>
                     <td>
-                        <form:input path="surname" style="padding: 7px 15px; font-size:12px;" value="${users.surname}"/>
+                        <form:input path="surname" style="padding: 7px 12px; font-size:12px;" value="${users.surname}"/>
                     </td>
                     <td>
                         Nick:
                     </td>
                     <td>
-                        <form:input path="nick" style="padding: 7px 15px; font-size:12px;" value="${users.nick}"/>
+                        <form:input path="nick" style="padding: 7px 12px; font-size:12px;" value="${users.nick}"/>
                     </td>
                     <td>
                         Pakiet:
@@ -82,7 +82,7 @@
                         Data:
                     </td>
                     <td>
-                        <form:input path="date" type="text" style="padding: 7px 15px; font-size:12px;" id="newdata" value="${users.date}"/>
+                        <form:input path="date" type="text" style="padding: 7px 12px; font-size:12px;" id="newdata" value="${users.date}"/>
                         <input type="button" value="Przedłuż" name="${users.date}" onclick="funDate(this)"/>
                     </td>
                     <td>

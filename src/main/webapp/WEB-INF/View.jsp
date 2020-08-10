@@ -97,6 +97,9 @@
                     <td>
                             ${users.date}
                     </td>
+                    <td>
+                            ${users.comments}
+                    </td>
                 </tr>
             </c:if>
         </c:forEach>
